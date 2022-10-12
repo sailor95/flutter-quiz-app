@@ -32,7 +32,14 @@ class Result extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          ElevatedButton(onPressed: restart, child: Text('Restart Quiz!'))
+          ElevatedButton(
+            onPressed: restart,
+            child: Text('Restart Quiz!'),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.blue,
+                shadowColor: Colors.transparent),
+          )
         ],
       ),
     );
