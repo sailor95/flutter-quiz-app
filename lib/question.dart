@@ -6,7 +6,7 @@ class Question extends StatelessWidget {
   Question(this.qText); // Constructor
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.all(10),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,19 +14,29 @@ class MyApp extends StatefulWidget {
 
 // _ means private class
 class _MyAppState extends State<MyApp> {
-  var _qIdx = 0;
+  var _questionIdx = 0;
 
-  void _ansQuestion() {
+  void _answerQuestion() {
     setState(() {
-      _qIdx++;
+      _questionIdx++;
     });
   }
 
   @override
-  Widget build(BuildContext ctx) {
-    var qs = [
-      'What\'s your fav color?',
-      'What\'s your fav animal?',
+  Widget build(BuildContext context) {
+    const questions = [
+      {
+        'text': 'What\'s your favorite color?',
+        'ans': ['Black', 'Red', 'Green', 'White'],
+      },
+      {
+        'text': 'What\'s your favorite animal?',
+        'ans': ['Dog', 'Pig', 'Cat', 'Cow'],
+      },
+      {
+        'text': 'What\'s your favorite person?',
+        'ans': ['Dave', 'David', 'Dh', 'Me'],
+      }
     ];
 
     return MaterialApp(
@@ -35,19 +46,12 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(qs[_qIdx]),
-            ElevatedButton(
-              child: Text('Ans 1'),
-              onPressed: _ansQuestion,
+            Question(
+              questions[_questionIdx]['text'],
             ),
-            ElevatedButton(
-              child: Text('Ans 2'),
-              onPressed: _ansQuestion,
-            ),
-            ElevatedButton(
-              child: Text('Ans 3'),
-              onPressed: _ansQuestion,
-            ),
+            ...(questions[_questionIdx]['ans'] as List<String>).map((a) {
+              return Answer(_answerQuestion, a);
+            }).toList(),
           ],
         ),
       ),
